@@ -1,0 +1,73 @@
+@import 'tailwindcss';
+@plugin 'tailwindcss-animate';
+
+@layer components {
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+html,
+body,
+#root {
+  @apply fixed h-svh w-full overflow-hidden break-keep;
+}
+
+img {
+  @apply touch-none;
+  touch-action: none !important;
+  -ms-touch-action: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+* {
+  touch-action: pan-x pan-y;
+}
+
+svg {
+  @apply shrink-0;
+}
+
+@utility custom-scroll {
+  @apply overflow-y-scroll;
+}
+
+/* Hide scrollbar globally */
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+@media (hover: hover) {
+  .md\:custom-scroll::-webkit-scrollbar,
+  .lg\:custom-scroll::-webkit-scrollbar,
+  .xl\:custom-scroll::-webkit-scrollbar,
+  .custom-scroll::-webkit-scrollbar {
+    width: 0.3rem;
+    border-radius: 9999px;
+  }
+  .md\:custom-scroll::-webkit-scrollbar-track,
+  .lg\:custom-scroll::-webkit-scrollbar-track,
+  .xl\:custom-scroll::-webkit-scrollbar-track,
+  .custom-scroll::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 9999px;
+  }
+  .md\:custom-scroll::-webkit-scrollbar-thumb,
+  .lg\:custom-scroll::-webkit-scrollbar-thumb,
+  .xl\:custom-scroll::-webkit-scrollbar-thumb,
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background: rgb(0 0 0 / 0.1);
+    border-radius: 9999px;
+  }
+}
