@@ -45,16 +45,16 @@ export default function Home() {
             </li>
             <li>
               <a
-                href="https://m-hangeul.naver.com/"
+                href="https://campaign.naver.com/hanguel/2024/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-sm transition-colors hover:text-white/60">
-                ↘ 네이버 한글날 캠페인 웹사이트 개발 참여
+                ↘ 네이버 2024 한글날 캠페인 웹사이트 개발 참여
               </a>
             </li>
             <li>
               <a
-                href="https://ksd2024graduate.com/"
+                href="https://fshwanjun.github.io/KMU.Spatial24/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-sm transition-colors hover:text-white/60">
