@@ -18,15 +18,6 @@ export default function Home() {
           <ul className="space-y-4">
             <li>
               <a
-                href="https://www.studio-for.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-sm transition-colors hover:text-white/60">
-                ↘ FOR creative 웹사이트 디자인 및 개발
-              </a>
-            </li>
-            <li>
-              <a
                 href="https://kukjeacf.com/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -85,17 +76,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Other */}
-        <section className="space-y-4">
-          <h2 className="text-xs tracking-wider text-white/40 uppercase">Portfolio</h2>
-          <a
-            href="https://drive.google.com/file/d/1LwEnIzelXc_S0zv_u_-Q9VKIQCwq-mwS/view?usp=drivesdk"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm transition-colors hover:text-white/60">
-            ↘ PDF Download
-          </a>
-        </section>
       </div>
     </div>
   );
