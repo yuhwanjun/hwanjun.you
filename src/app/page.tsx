@@ -1,3 +1,7 @@
+import { projects } from "@/data/projects";
+import { education, certifications, careers } from "@/data/about";
+import ProjectList from "@/components/ProjectList";
+
 export default function Home() {
   return (
     <div className="min-h-svh w-full overflow-y-auto bg-black p-8 text-white md:p-16">
@@ -10,58 +14,53 @@ export default function Home() {
             <p>fshwanjun@gmail.com</p>
             <p>010-5572-9540</p>
           </div>
+
+          <div className="space-y-3 pt-2">
+            <div className="space-y-1">
+              <p className="text-xs text-white/30 uppercase tracking-wider">Career</p>
+              {careers.map((c) => (
+                <p key={c.period} className="text-xs text-white/50">
+                  <span className="text-white/30">{c.period}</span>
+                  {"  "}
+                  <a
+                    href={c.organizationUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="!text-xs text-white/50 underline underline-offset-2 transition-colors hover:text-white/70">
+                    {c.organization}
+                  </a>
+                  {" — "}
+                  {c.role}
+                </p>
+              ))}
+            </div>
+            <div className="space-y-1">
+              <p className="text-xs text-white/30 uppercase tracking-wider">Education</p>
+              {education.map((e) => (
+                <p key={e.period} className="text-xs text-white/50">
+                  <span className="text-white/30">{e.period}</span>
+                  {"  "}
+                  {e.description}
+                </p>
+              ))}
+            </div>
+            <div className="space-y-1">
+              <p className="text-xs text-white/30 uppercase tracking-wider">Certificate</p>
+              {certifications.map((c) => (
+                <p key={c.period} className="text-xs text-white/50">
+                  <span className="text-white/30">{c.period}</span>
+                  {"  "}
+                  {c.description}
+                </p>
+              ))}
+            </div>
+          </div>
         </header>
 
         {/* Projects */}
-        <section className="space-y-4">
+        <section className="space-y-6">
           <h2 className="text-xs tracking-wider text-white/40 uppercase">Projects</h2>
-          <ul className="space-y-4">
-            <li>
-              <a
-                href="https://kukjeacf.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-sm transition-colors hover:text-white/60">
-                ↘ 국제문화예술재단 웹사이트 디자인 및 개발
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://buldak.com/kr/ko/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-sm transition-colors hover:text-white/60">
-                ↘ 불닭 웹사이트 메인페이지 인터랙션 개발
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://campaign.naver.com/hanguel/2024/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-sm transition-colors hover:text-white/60">
-                ↘ 네이버 2024 한글날 캠페인 웹사이트 개발 참여
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://fshwanjun.github.io/KMU.Spatial24/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-sm transition-colors hover:text-white/60">
-                ↘ 국민대 공간디자인과 졸업전시 웹사이트 디자인 및 개발
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://bukjanggu-chigo.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-sm transition-colors hover:text-white/60">
-                ↘ 온라인 사물놀이
-              </a>
-            </li>
-          </ul>
+          <ProjectList projects={projects} />
         </section>
 
         <section className="space-y-4">
@@ -75,7 +74,6 @@ export default function Home() {
             />
           </div>
         </section>
-
       </div>
     </div>
   );
