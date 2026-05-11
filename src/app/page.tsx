@@ -1,14 +1,14 @@
-import { projects } from "@/data/projects";
-import { education, certifications, careers } from "@/data/about";
-import ProjectList from "@/components/ProjectList";
+import { projects } from '@/data/projects';
+import { education, certifications, careers } from '@/data/about';
+import ProjectList from '@/components/ProjectList';
 
 export default function Home() {
   return (
-    <div className="min-h-svh w-full overflow-y-auto bg-black p-8 text-white md:p-16">
-      <div className="mx-auto max-w-2xl space-y-12 py-8">
+    <div className="overflow-y-autop-8 min-h-svh w-full text-white md:p-16">
+      <div className="mx-auto max-w-2xl space-y-12 px-4 py-8">
         {/* Header */}
         <header className="space-y-4">
-          <h1 className="font-regular text-2xl">유환준</h1>
+          <h1 className="font-regular text-2xl">유환준 Yu HwanJun</h1>
           <p className="text-sm text-white/80">그래픽 디자인, 프론트엔드 웹 개발, 2D&3D모션</p>
           <div className="space-y-1 text-sm text-white/60">
             <p>fshwanjun@gmail.com</p>
@@ -17,11 +17,11 @@ export default function Home() {
 
           <div className="space-y-3 pt-2">
             <div className="space-y-1">
-              <p className="text-xs text-white/30 uppercase tracking-wider">Career</p>
+              <p className="text-xs tracking-wider text-white/30 uppercase">Career</p>
               {careers.map((c) => (
                 <p key={c.period} className="text-xs text-white/50">
                   <span className="text-white/30">{c.period}</span>
-                  {"  "}
+                  {'  '}
                   <a
                     href={c.organizationUrl}
                     target="_blank"
@@ -29,27 +29,27 @@ export default function Home() {
                     className="!text-xs text-white/50 underline underline-offset-2 transition-colors hover:text-white/70">
                     {c.organization}
                   </a>
-                  {" — "}
+                  {' — '}
                   {c.role}
                 </p>
               ))}
             </div>
             <div className="space-y-1">
-              <p className="text-xs text-white/30 uppercase tracking-wider">Education</p>
+              <p className="text-xs tracking-wider text-white/30 uppercase">Education</p>
               {education.map((e) => (
                 <p key={e.period} className="text-xs text-white/50">
                   <span className="text-white/30">{e.period}</span>
-                  {"  "}
+                  {'  '}
                   {e.description}
                 </p>
               ))}
             </div>
             <div className="space-y-1">
-              <p className="text-xs text-white/30 uppercase tracking-wider">Certificate</p>
+              <p className="text-xs tracking-wider text-white/30 uppercase">Certificate</p>
               {certifications.map((c) => (
                 <p key={c.period} className="text-xs text-white/50">
                   <span className="text-white/30">{c.period}</span>
-                  {"  "}
+                  {'  '}
                   {c.description}
                 </p>
               ))}
