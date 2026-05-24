@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Project } from "@/data/projects";
+import { getProjectId } from "@/data/projects";
 
 function ProjectItem({
   project,
@@ -131,6 +131,7 @@ function ProjectItem({
                 ))}
               </ul>
             )}
+
           </motion.div>
         )}
       </AnimatePresence>
@@ -138,19 +139,28 @@ function ProjectItem({
   );
 }
 
-export default function ProjectList({ projects }: { projects: Project[] }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
+export default function ProjectList({
+  projects,
+  openId,
+  onOpenId,
+}: {
+  projects: Project[];
+  openId: string | null;
+  onOpenId: (id: string | null) => void;
+}) {
   return (
     <ul className="space-y-4">
-      {projects.map((project, i) => (
-        <ProjectItem
-          key={project.url}
-          project={project}
-          isOpen={openIndex === i}
-          onToggle={() => setOpenIndex(openIndex === i ? null : i)}
-        />
-      ))}
+      {projects.map((project) => {
+        const id = getProjectId(project);
+        return (
+          <ProjectItem
+            key={project.url}
+            project={project}
+            isOpen={openId === id}
+            onToggle={() => onOpenId(openId === id ? null : id)}
+          />
+        );
+      })}
     </ul>
   );
 }

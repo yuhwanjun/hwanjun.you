@@ -1,6 +1,19 @@
+export const getProjectId = (project: { url: string }) => {
+  try {
+    const url = new URL(project.url);
+    return (url.hostname + url.pathname)
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+  } catch {
+    return "";
+  }
+};
+
 export type Project = {
   title: string;
   url: string;
+  image?: string;
   links?: { label: string; url: string }[];
   organization?: string;
   organizationUrl?: string;
