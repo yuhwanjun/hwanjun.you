@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import type { Project } from "@/data/projects";
 import { getProjectId } from "@/data/projects";
 import { ProjectModal } from "@/components/ProjectModal";
@@ -56,7 +57,7 @@ function PileGallery({ cards, label, onClose }: { cards: CardData[]; label: stri
           <div className="grid gap-2" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(80px, 1fr))" }}>
             {cards.map((card) => (
               <div key={card.id} className="relative aspect-[63/88] overflow-hidden rounded-sm border border-white/10 bg-neutral-900">
-                {cardImage(card) && <img src={cardImage(card)} alt={cardTitle(card)} className="absolute inset-0 h-full w-full object-cover" />}
+                {cardImage(card) && <Image src={cardImage(card)!} alt={cardTitle(card)} fill className="object-cover" sizes="80px" />}
                 <div className="absolute inset-x-0 bottom-0 bg-black/60 p-1.5">
                   <p className="text-[8px] leading-snug text-white/70">{cardTitle(card)}</p>
                 </div>
@@ -84,7 +85,7 @@ function CardPile({ count, label, topCard, pileRef, onClick }: {
           : [...Array(n)].map((_, i) => (
               <div key={i} className="absolute overflow-hidden rounded-sm border border-white/10 bg-neutral-900"
                 style={{ width: 60, height: 84, bottom: i * 2, left: i * 1, zIndex: i }}>
-                {i === n - 1 && img && <img src={img} alt="" className="h-full w-full object-cover opacity-60" />}
+                {i === n - 1 && img && <Image src={img} alt="" fill className="object-cover opacity-60" sizes="60px" />}
               </div>
             ))}
         <span className="absolute -top-5 left-0 text-xs text-white/40">{count}</span>
@@ -146,7 +147,7 @@ function HandCard({ card, offset, zIndex, isSelected, onClick, phase, graveTarge
       }}>
       <div className="relative aspect-[63/88] w-full overflow-hidden rounded-sm border border-white/10 bg-neutral-900">
         {cardImage(card)
-          ? <img src={cardImage(card)} alt={cardTitle(card)} className="absolute inset-0 h-full w-full object-cover" />
+          ? <Image src={cardImage(card)!} alt={cardTitle(card)} fill className="object-cover" sizes="200px" />
           : <div className="flex h-full w-full items-center justify-center"><span className="text-[9px] text-white/20">no image</span></div>}
         <div className="absolute inset-x-0 bottom-0 bg-black/60 p-2">
           <p className="text-left text-[9px] leading-snug text-white/80">{cardTitle(card)}</p>

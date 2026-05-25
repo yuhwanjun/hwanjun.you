@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import type { Project } from "@/data/projects";
 import { getProjectId } from "@/data/projects";
 
@@ -160,12 +161,14 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
       className="group relative flex w-full aspect-[63/88] flex-col overflow-hidden rounded-sm border border-white/10 bg-white/5 text-left">
 
       {/* 썸네일 — 텍스트 영역 제외한 나머지 채움 */}
-      <div className="min-h-0 flex-1 overflow-hidden bg-white/5">
+      <div className="relative min-h-0 flex-1 overflow-hidden bg-white/5">
         {project.image ? (
-          <img
+          <Image
             src={project.image}
             alt={project.title}
-            className="h-full w-full object-cover"
+            fill
+            className="object-cover"
+            sizes="300px"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center">
@@ -239,10 +242,12 @@ function ShowreelCard({ onClick }: { onClick: () => void }) {
       className="group relative flex w-full aspect-[63/88] flex-col items-center justify-center overflow-hidden rounded-sm border border-white/10 bg-white/5 text-left">
 
       {/* 썸네일 */}
-      <img
+      <Image
         src="https://vumbnail.com/1044879197.jpg"
         alt="Showreel"
-        className="absolute inset-0 h-full w-full object-cover"
+        fill
+        className="object-cover"
+        sizes="300px"
       />
 
       {/* 카드 하단 타이틀 */}
