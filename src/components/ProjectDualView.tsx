@@ -235,34 +235,29 @@ export default function ProjectDualView({ projects, selectedId, onSelectId }: {
 
   return (
     <>
-      {/* 덱 — 좌하단 */}
-      <div className="fixed left-10 z-30" style={{ bottom: 190 }}>
+      {/* 하단 바: 덱 · NEXT · 묘지 */}
+      <div className="fixed left-0 right-0 z-30 flex items-center justify-between px-10" style={{ bottom: 190 }}>
         <CardPile count={deck.length} label="DECK" topCard={deck.at(-1)} pileRef={deckRef}
           onClick={() => setGallery({ cards: deck, label: "DECK" })} />
-      </div>
 
-      {/* NEXT — 하단 중앙 */}
-      <button
-        onClick={handleNext}
-        disabled={phase !== "idle"}
-        className="fixed left-1/2 -translate-x-1/2 z-30 disabled:opacity-30 disabled:cursor-not-allowed group"
-        style={{ bottom: 210 }}>
-        <span className={`
-          flex items-center gap-2 px-5 py-2.5
-          border text-[11px] tracking-[0.2em] uppercase font-medium
-          transition-all duration-150
-          ${phase === "idle"
-            ? "border-white/30 text-white/70 bg-white/5 hover:bg-white/12 hover:border-white/60 hover:text-white shadow-[0_0_12px_rgba(255,255,255,0.06)] hover:shadow-[0_0_20px_rgba(255,255,255,0.14)]"
-            : "border-white/10 text-white/20 bg-transparent"
-          }
-        `}>
-          NEXT
-          <span className="transition-transform duration-150 group-hover:translate-x-0.5">→</span>
-        </span>
-      </button>
+        <button
+          onClick={handleNext}
+          disabled={phase !== "idle"}
+          className="disabled:opacity-30 disabled:cursor-not-allowed group">
+          <span className={`
+            flex items-center gap-2 px-5 py-2.5
+            border text-[11px] tracking-[0.2em] uppercase font-medium
+            transition-all duration-150
+            ${phase === "idle"
+              ? "border-white/30 text-white/70 bg-white/5 hover:bg-white/12 hover:border-white/60 hover:text-white shadow-[0_0_12px_rgba(255,255,255,0.06)] hover:shadow-[0_0_20px_rgba(255,255,255,0.14)]"
+              : "border-white/10 text-white/20 bg-transparent"
+            }
+          `}>
+            NEXT
+            <span className="transition-transform duration-150 group-hover:translate-x-0.5">→</span>
+          </span>
+        </button>
 
-      {/* 묘지 — 우하단 */}
-      <div className="fixed right-10 z-30" style={{ bottom: 190 }}>
         <CardPile count={graveyard.length} label="GRAVE" topCard={graveyard.at(-1)} pileRef={graveRef}
           onClick={() => setGallery({ cards: graveyard, label: "GRAVE" })} />
       </div>
