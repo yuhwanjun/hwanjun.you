@@ -139,6 +139,59 @@ function ProjectItem({
   );
 }
 
+function ShowreelItem({ isOpen, onToggle }: { isOpen: boolean; onToggle: () => void }) {
+  return (
+    <li className="space-y-2">
+      <div className="flex items-baseline gap-2">
+        <motion.span
+          animate={{ rotate: isOpen ? 45 : 0 }}
+          transition={{ duration: 0.2, ease: "easeInOut" }}
+          className="shrink-0 text-sm text-white/60 inline-block">
+          ↘
+        </motion.span>
+        <button onClick={onToggle} className="text-left text-base transition-colors hover:text-white/60">
+          Showreel
+        </button>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.a
+              href="https://vimeo.com/1044879197"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: -4 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -4 }}
+              transition={{ duration: 0.15 }}
+              className="shrink-0 text-base text-white/40 tracking-wider transition-colors hover:text-white/70">
+              LINK→
+            </motion.a>
+          )}
+        </AnimatePresence>
+      </div>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="showreel"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="overflow-hidden pl-5">
+            <div className="aspect-video w-full">
+              <iframe
+                src="https://player.vimeo.com/video/1044879197?title=0&byline=0&portrait=0&autoplay=1"
+                className="h-full w-full"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </li>
+  );
+}
+
 export default function ProjectList({
   projects,
   openId,
@@ -150,6 +203,10 @@ export default function ProjectList({
 }) {
   return (
     <ul className="space-y-4">
+      <ShowreelItem
+        isOpen={openId === "showreel"}
+        onToggle={() => onOpenId(openId === "showreel" ? null : "showreel")}
+      />
       {projects.map((project) => {
         const id = getProjectId(project);
         return (
