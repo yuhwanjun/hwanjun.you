@@ -14,13 +14,13 @@ type CardData =
 type Phase = "idle" | "discarding" | "drawing";
 
 // ── 상수 ──────────────────────────────────────────────────────
-const CARD_W   = 150;
-const CARD_H   = CARD_W * 88 / 63;   // ≈ 209.5
+const CARD_W   = 200;
+const CARD_H   = CARD_W * 88 / 63;   // ≈ 279.4
 const HAND_SIZE = 5;
-const SPACING  = 115;
-const CURVE    = 10;
+const SPACING  = 145;
+const CURVE    = 12;
 const ROT_DEG  = 5;
-const LIFT     = 160;
+const LIFT     = 200;
 
 // ── 유틸 ──────────────────────────────────────────────────────
 const shuffle = <T,>(arr: T[]): T[] => [...arr].sort(() => Math.random() - 0.5);
@@ -182,7 +182,7 @@ export default function ProjectDualView({ projects, selectedId, onSelectId }: {
   // left: calc(50% - CARD_W/2) + y from bottom container bottom-[-20px]
   const getNaturalCenter = () => ({
     cx: window.innerWidth / 2,
-    cy: window.innerHeight + 40 - CARD_H / 2,
+    cy: window.innerHeight + 70 - CARD_H / 2,
   });
 
   const handleNext = useCallback(() => {
@@ -251,7 +251,7 @@ export default function ProjectDualView({ projects, selectedId, onSelectId }: {
       </div>
 
       {/* 손패 */}
-      <div className="pointer-events-none fixed left-0 right-0 z-20 h-[260px]" style={{ bottom: -40 }}>
+      <div className="pointer-events-none fixed left-0 right-0 z-20 h-[340px]" style={{ bottom: -70 }}>
         <div className="relative h-full w-full pointer-events-auto">
           {hand.map((card, i) => (
             <HandCard
