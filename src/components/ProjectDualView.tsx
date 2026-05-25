@@ -235,18 +235,23 @@ export default function ProjectDualView({ projects, selectedId, onSelectId }: {
 
   return (
     <>
-      {/* 상단 바: 덱 · NEXT · 묘지 */}
-      <div className="fixed top-8 left-0 right-0 z-30 flex items-start justify-between px-10">
+      {/* 덱 — 좌하단 */}
+      <div className="fixed left-10 z-30" style={{ bottom: 190 }}>
         <CardPile count={deck.length} label="DECK" topCard={deck.at(-1)} pileRef={deckRef}
           onClick={() => setGallery({ cards: deck, label: "DECK" })} />
+      </div>
 
-        <button onClick={handleNext} disabled={phase !== "idle"}
-          className="text-[9px] tracking-widest uppercase transition-colors disabled:opacity-30 mt-2">
-          <span className={phase === "idle" ? "text-white/40 hover:text-white/70" : "text-white/20"}>
-            NEXT →
-          </span>
-        </button>
+      {/* NEXT — 하단 중앙 */}
+      <button onClick={handleNext} disabled={phase !== "idle"}
+        className="fixed left-1/2 -translate-x-1/2 z-30 text-[9px] tracking-widest uppercase transition-colors disabled:opacity-30"
+        style={{ bottom: 210 }}>
+        <span className={phase === "idle" ? "text-white/40 hover:text-white/70" : "text-white/20"}>
+          NEXT →
+        </span>
+      </button>
 
+      {/* 묘지 — 우하단 */}
+      <div className="fixed right-10 z-30" style={{ bottom: 190 }}>
         <CardPile count={graveyard.length} label="GRAVE" topCard={graveyard.at(-1)} pileRef={graveRef}
           onClick={() => setGallery({ cards: graveyard, label: "GRAVE" })} />
       </div>

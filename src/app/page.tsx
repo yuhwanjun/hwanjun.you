@@ -62,8 +62,8 @@ export default function Home() {
         </div>
       )}
 
-      {/* 우하단 고정 프로필 */}
-      <div className="fixed bottom-8 right-8 space-y-3 text-right">
+      {/* 우상단 고정 프로필 */}
+      <div className="fixed top-8 right-8 space-y-3 text-right">
         <div>
           <h1 className="text-sm text-white/80">유환준</h1>
           <p className="text-xs text-white/40">그래픽 디자인, 프론트엔드 웹 개발, 2D&3D모션</p>
