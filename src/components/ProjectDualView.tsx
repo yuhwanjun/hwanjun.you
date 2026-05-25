@@ -14,13 +14,13 @@ type CardData =
 type Phase = "idle" | "discarding" | "drawing";
 
 // ── 상수 ──────────────────────────────────────────────────────
-const CARD_W   = 100;
-const CARD_H   = CARD_W * 88 / 63;   // ≈ 139.7
+const CARD_W   = 150;
+const CARD_H   = CARD_W * 88 / 63;   // ≈ 209.5
 const HAND_SIZE = 5;
-const SPACING  = 82;
-const CURVE    = 8;
+const SPACING  = 115;
+const CURVE    = 10;
 const ROT_DEG  = 5;
-const LIFT     = 110;
+const LIFT     = 160;
 
 // ── 유틸 ──────────────────────────────────────────────────────
 const shuffle = <T,>(arr: T[]): T[] => [...arr].sort(() => Math.random() - 0.5);
@@ -182,7 +182,7 @@ export default function ProjectDualView({ projects, selectedId, onSelectId }: {
   // left: calc(50% - CARD_W/2) + y from bottom container bottom-[-20px]
   const getNaturalCenter = () => ({
     cx: window.innerWidth / 2,
-    cy: window.innerHeight + 20 - CARD_H / 2,
+    cy: window.innerHeight + 40 - CARD_H / 2,
   });
 
   const handleNext = useCallback(() => {
@@ -196,11 +196,11 @@ export default function ProjectDualView({ projects, selectedId, onSelectId }: {
 
     setGraveTarget({
       x: gr ? (gr.left + gr.width  / 2) - cx : window.innerWidth  - 70 - cx,
-      y: gr ? (gr.top  + gr.height / 2) - cy : window.innerHeight - 225 - cy,
+      y: gr ? (gr.top  + gr.height / 2) - cy : 80 - cy,
     });
     setDeckSource({
       x: dr ? (dr.left + dr.width  / 2) - cx : 70 - cx,
-      y: dr ? (dr.top  + dr.height / 2) - cy : window.innerHeight - 225 - cy,
+      y: dr ? (dr.top  + dr.height / 2) - cy : 80 - cy,
     });
 
     setPhase("discarding");
@@ -234,29 +234,24 @@ export default function ProjectDualView({ projects, selectedId, onSelectId }: {
 
   return (
     <>
-      {/* 덱 */}
-      <div className="fixed left-10 z-30" style={{ bottom: 190 }}>
+      {/* 상단 바: 덱 · NEXT · 묘지 */}
+      <div className="fixed top-8 left-0 right-0 z-30 flex items-start justify-between px-10">
         <CardPile count={deck.length} label="DECK" topCard={deck.at(-1)} pileRef={deckRef}
           onClick={() => setGallery({ cards: deck, label: "DECK" })} />
-      </div>
 
-      {/* NEXT */}
-      <button onClick={handleNext} disabled={phase !== "idle"}
-        className="fixed left-1/2 -translate-x-1/2 z-30 text-[9px] tracking-widest uppercase transition-colors disabled:opacity-30"
-        style={{ bottom: 190 }}>
-        <span className={phase === "idle" ? "text-white/40 hover:text-white/70" : "text-white/20"}>
-          NEXT →
-        </span>
-      </button>
+        <button onClick={handleNext} disabled={phase !== "idle"}
+          className="text-[9px] tracking-widest uppercase transition-colors disabled:opacity-30 mt-2">
+          <span className={phase === "idle" ? "text-white/40 hover:text-white/70" : "text-white/20"}>
+            NEXT →
+          </span>
+        </button>
 
-      {/* 묘지 */}
-      <div className="fixed right-10 z-30" style={{ bottom: 190 }}>
         <CardPile count={graveyard.length} label="GRAVE" topCard={graveyard.at(-1)} pileRef={graveRef}
           onClick={() => setGallery({ cards: graveyard, label: "GRAVE" })} />
       </div>
 
       {/* 손패 */}
-      <div className="pointer-events-none fixed left-0 right-0 z-20 h-[180px]" style={{ bottom: -20 }}>
+      <div className="pointer-events-none fixed left-0 right-0 z-20 h-[260px]" style={{ bottom: -40 }}>
         <div className="relative h-full w-full pointer-events-auto">
           {hand.map((card, i) => (
             <HandCard
