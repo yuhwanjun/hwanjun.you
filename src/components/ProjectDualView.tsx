@@ -73,7 +73,7 @@ function PileGallery({ cards, label, onClose }: { cards: CardData[]; label: stri
 // ── 파일 더미 ─────────────────────────────────────────────────
 function CardPile({ count, label, topCard, pileRef, onClick }: {
   count: number; label: string; topCard?: CardData;
-  pileRef: React.RefObject<HTMLDivElement | null>; onClick: () => void;
+  pileRef: React.RefObject<HTMLDivElement>; onClick: () => void;
 }) {
   const n = Math.min(4, count);
   const img = topCard ? cardImage(topCard) : undefined;
