@@ -11,7 +11,7 @@ type View = "list" | "grid";
 function parseHash(hash: string): { view: View; id: string | null } {
   const raw = hash.replace(/^#/, "");
   const [viewPart, idPart] = raw.split(":");
-  const view: View = viewPart === "grid" ? "grid" : "list";
+  const view: View = viewPart === "list" ? "list" : "grid";
   return { view, id: idPart || null };
 }
 
