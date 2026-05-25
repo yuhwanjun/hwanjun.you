@@ -242,11 +242,22 @@ export default function ProjectDualView({ projects, selectedId, onSelectId }: {
       </div>
 
       {/* NEXT — 하단 중앙 */}
-      <button onClick={handleNext} disabled={phase !== "idle"}
-        className="fixed left-1/2 -translate-x-1/2 z-30 text-[9px] tracking-widest uppercase transition-colors disabled:opacity-30"
+      <button
+        onClick={handleNext}
+        disabled={phase !== "idle"}
+        className="fixed left-1/2 -translate-x-1/2 z-30 disabled:opacity-30 disabled:cursor-not-allowed group"
         style={{ bottom: 210 }}>
-        <span className={phase === "idle" ? "text-white/40 hover:text-white/70" : "text-white/20"}>
-          NEXT →
+        <span className={`
+          flex items-center gap-2 px-5 py-2.5
+          border text-[11px] tracking-[0.2em] uppercase font-medium
+          transition-all duration-150
+          ${phase === "idle"
+            ? "border-white/30 text-white/70 bg-white/5 hover:bg-white/12 hover:border-white/60 hover:text-white shadow-[0_0_12px_rgba(255,255,255,0.06)] hover:shadow-[0_0_20px_rgba(255,255,255,0.14)]"
+            : "border-white/10 text-white/20 bg-transparent"
+          }
+        `}>
+          NEXT
+          <span className="transition-transform duration-150 group-hover:translate-x-0.5">→</span>
         </span>
       </button>
 
